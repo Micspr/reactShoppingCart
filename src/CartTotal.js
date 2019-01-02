@@ -5,15 +5,7 @@ class CartTotal extends Component {
     super(props)
   }
 
-  totalPrice = () => {
-    let total = 0
-
-    this.props.cartItemsList.map(ele => total += ele.product.priceInCents * ele.quantity)
-
-    total = Number.parseFloat(total/100).toFixed(2)
-
-    return total
-  }
+  totalPrice = () => Number.parseFloat(this.props.cartItemsList.reduce((acc, curr) => acc + curr.product.priceInCents * curr.quantity, 0)/100).toFixed(2)
 
   render() {
     return (
