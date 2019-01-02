@@ -3,6 +3,7 @@ import NavBar from './NavBar'
 import Footer from './Footer'
 import CartItems from './CartItems'
 import SubmitForm from './Form'
+import CartTotal from './CartTotal'
 import './App.css';
 
 class App extends Component {
@@ -32,12 +33,9 @@ class App extends Component {
   }
     addItem = (itemID, quantity) => {
       const foundItem = this.state.products.findIndex(ele => ele.id.toString() === itemID)
-      
 
       if(foundItem === -1)
         return
-
-      // const itemExists = this.state.cartItemsList.findIndex(ele => ele.name === itemName)
         
       const newItem = {id: this.state.cartItemsList.length - 1, product: this.state.products[foundItem], quantity}
 
@@ -51,6 +49,7 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <CartItems cartItems={this.state.cartItemsList}/>
+        <CartTotal cartItemsList={this.state.cartItemsList}/>
         <SubmitForm products={this.state.products} addItem ={this.addItem}/>
         <Footer copyright={'2016'}/>
       </div>
